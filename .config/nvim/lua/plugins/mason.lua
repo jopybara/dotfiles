@@ -1,19 +1,26 @@
 return {
-  {
-    "mason-org/mason.nvim",
-    dependencies = {
-      "mason-org/mason-lspconfig.nvim",
-    },
-    config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "vtsls",
-          "vue_ls",
+    {
+        "mason-org/mason.nvim",
+        dependencies = {
+            "mason-org/mason-lspconfig.nvim",
         },
-        automatic_enable = true,
-      })
-    end,
-  },
+        config = function()
+            require("mason").setup({
+                registries = {
+                    "github:mason-org/mason-registry",
+                    "github:Crashdummyy/mason-registry",
+                },
+            })
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "lua_ls",
+                    "oxfmt",
+                    "roslyn",
+                    "vtsls",
+                    "vue_ls",
+                },
+                automatic_enable = true,
+            })
+        end,
+    },
 }
